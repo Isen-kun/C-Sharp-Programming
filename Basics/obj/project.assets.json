@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\CODING\\C-Sharp-Programming\\C-Sharp-Programming.csproj",
+      "projectUniqueName": "D:\\CODING\\C-Sharp-Programming\\Basics\\C-Sharp-Programming.csproj",
       "projectName": "C-Sharp-Programming",
-      "projectPath": "D:\\CODING\\C-Sharp-Programming\\C-Sharp-Programming.csproj",
+      "projectPath": "D:\\CODING\\C-Sharp-Programming\\Basics\\C-Sharp-Programming.csproj",
       "packagesPath": "C:\\Users\\ghosh\\.nuget\\packages\\",
-      "outputPath": "D:\\CODING\\C-Sharp-Programming\\obj\\",
+      "outputPath": "D:\\CODING\\C-Sharp-Programming\\Basics\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ghosh\\AppData\\Roaming\\NuGet\\NuGet.Config"
