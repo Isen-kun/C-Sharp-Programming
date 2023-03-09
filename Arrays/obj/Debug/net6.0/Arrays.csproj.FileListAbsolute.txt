@@ -1,0 +1,15 @@
+D:\CODING\C-Sharp-Programming\Arrays\bin\Debug\net6.0\Arrays.exe
+D:\CODING\C-Sharp-Programming\Arrays\bin\Debug\net6.0\Arrays.deps.json
+D:\CODING\C-Sharp-Programming\Arrays\bin\Debug\net6.0\Arrays.runtimeconfig.json
+D:\CODING\C-Sharp-Programming\Arrays\bin\Debug\net6.0\Arrays.dll
+D:\CODING\C-Sharp-Programming\Arrays\bin\Debug\net6.0\Arrays.pdb
+D:\CODING\C-Sharp-Programming\Arrays\obj\Debug\net6.0\Arrays.csproj.AssemblyReference.cache
+D:\CODING\C-Sharp-Programming\Arrays\obj\Debug\net6.0\Arrays.GeneratedMSBuildEditorConfig.editorconfig
+D:\CODING\C-Sharp-Programming\Arrays\obj\Debug\net6.0\Arrays.AssemblyInfoInputs.cache
+D:\CODING\C-Sharp-Programming\Arrays\obj\Debug\net6.0\Arrays.AssemblyInfo.cs
+D:\CODING\C-Sharp-Programming\Arrays\obj\Debug\net6.0\Arrays.csproj.CoreCompileInputs.cache
+D:\CODING\C-Sharp-Programming\Arrays\obj\Debug\net6.0\Arrays.dll
+D:\CODING\C-Sharp-Programming\Arrays\obj\Debug\net6.0\refint\Arrays.dll
+D:\CODING\C-Sharp-Programming\Arrays\obj\Debug\net6.0\Arrays.pdb
+D:\CODING\C-Sharp-Programming\Arrays\obj\Debug\net6.0\Arrays.genruntimeconfig.cache
+D:\CODING\C-Sharp-Programming\Arrays\obj\Debug\net6.0\ref\Arrays.dll

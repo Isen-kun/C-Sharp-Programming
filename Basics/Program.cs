@@ -69,3 +69,31 @@ System.Console.WriteLine(Math.Round(6.9)); // math functions
 System.Console.Write("Enter your name: ");
 string name = Console.ReadLine();
 System.Console.WriteLine("Hello " + name);
+
+
+//Simple Calculator
+
+Console.Write("Enter a number: ");
+int num1 = Convert.ToInt32(Console.ReadLine()); //String to Integer Conversion
+Console.Write("Enter another number: ");
+int num2 = Convert.ToInt32(Console.ReadLine()); //ToDouble for String to double Conversion
+
+Console.WriteLine("The sum is " + (num1 + num2));
+
+
+// Mad Libs Game
+
+string color, pluralNoun, celebrity;
+
+Console.Write("Enter a color: ");
+color = Console.ReadLine();
+
+Console.Write("Enter a plural noun: ");
+pluralNoun = Console.ReadLine();
+
+Console.Write("Enter a celebrity: ");
+celebrity = Console.ReadLine();
+
+Console.WriteLine("Roses are {0}", color);
+Console.WriteLine("{0} are blue", pluralNoun);
+Console.WriteLine("I love {0}", celebrity);
