@@ -1,0 +1,8 @@
+C:\CODING\VirtualOverrideDemo\bin\Debug\VirtualOverrideDemo.exe.config
+C:\CODING\VirtualOverrideDemo\bin\Debug\VirtualOverrideDemo.exe
+C:\CODING\VirtualOverrideDemo\bin\Debug\VirtualOverrideDemo.pdb
+C:\CODING\VirtualOverrideDemo\obj\Debug\VirtualOverrideDemo.csproj.AssemblyReference.cache
+C:\CODING\VirtualOverrideDemo\obj\Debug\VirtualOverrideDemo.csproj.SuggestedBindingRedirects.cache
+C:\CODING\VirtualOverrideDemo\obj\Debug\VirtualOverrideDemo.csproj.CoreCompileInputs.cache
+C:\CODING\VirtualOverrideDemo\obj\Debug\VirtualOverrideDemo.exe
+C:\CODING\VirtualOverrideDemo\obj\Debug\VirtualOverrideDemo.pdb

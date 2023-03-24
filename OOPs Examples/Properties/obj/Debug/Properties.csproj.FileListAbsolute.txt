@@ -1,0 +1,8 @@
+C:\Users\2270323\OneDrive - Cognizant\Desktop\CODING\Properties\bin\Debug\Properties.exe.config
+C:\Users\2270323\OneDrive - Cognizant\Desktop\CODING\Properties\bin\Debug\Properties.exe
+C:\Users\2270323\OneDrive - Cognizant\Desktop\CODING\Properties\bin\Debug\Properties.pdb
+C:\Users\2270323\OneDrive - Cognizant\Desktop\CODING\Properties\obj\Debug\Properties.csproj.AssemblyReference.cache
+C:\Users\2270323\OneDrive - Cognizant\Desktop\CODING\Properties\obj\Debug\Properties.csproj.SuggestedBindingRedirects.cache
+C:\Users\2270323\OneDrive - Cognizant\Desktop\CODING\Properties\obj\Debug\Properties.csproj.CoreCompileInputs.cache
+C:\Users\2270323\OneDrive - Cognizant\Desktop\CODING\Properties\obj\Debug\Properties.exe
+C:\Users\2270323\OneDrive - Cognizant\Desktop\CODING\Properties\obj\Debug\Properties.pdb

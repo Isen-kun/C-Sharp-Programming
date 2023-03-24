@@ -1,0 +1,8 @@
+C:\Users\2270323\OneDrive - Cognizant\Desktop\CODING\InheritanceDemo\obj\Debug\InheritanceDemo.csproj.AssemblyReference.cache
+C:\Users\2270323\OneDrive - Cognizant\Desktop\CODING\InheritanceDemo\obj\Debug\InheritanceDemo.csproj.SuggestedBindingRedirects.cache
+C:\Users\2270323\OneDrive - Cognizant\Desktop\CODING\InheritanceDemo\obj\Debug\InheritanceDemo.csproj.CoreCompileInputs.cache
+C:\Users\2270323\OneDrive - Cognizant\Desktop\CODING\InheritanceDemo\bin\Debug\InheritanceDemo.exe.config
+C:\Users\2270323\OneDrive - Cognizant\Desktop\CODING\InheritanceDemo\bin\Debug\InheritanceDemo.exe
+C:\Users\2270323\OneDrive - Cognizant\Desktop\CODING\InheritanceDemo\bin\Debug\InheritanceDemo.pdb
+C:\Users\2270323\OneDrive - Cognizant\Desktop\CODING\InheritanceDemo\obj\Debug\InheritanceDemo.exe
+C:\Users\2270323\OneDrive - Cognizant\Desktop\CODING\InheritanceDemo\obj\Debug\InheritanceDemo.pdb
