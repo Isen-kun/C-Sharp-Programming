@@ -97,3 +97,43 @@ celebrity = Console.ReadLine();
 Console.WriteLine("Roses are {0}", color);
 Console.WriteLine("{0} are blue", pluralNoun);
 Console.WriteLine("I love {0}", celebrity);
+
+
+//Params Example
+
+void ParamsMethod(params string[] sentence)
+{
+  for (int i = 0; i < sentence.Length; i++)
+  {
+    System.Console.Write(sentence[i] + " ");
+  }
+}
+
+ParamsMethod("This", "is", "a", "good", "idea", "to", "not", "to", "be");
+ParamsMethod();
+
+void ParamsMethod2(params object[] stuff)
+{
+  foreach (object obj in stuff)
+  {
+    System.Console.Write(obj + " ");
+  }
+  System.Console.WriteLine();
+}
+
+ParamsMethod2(50, 3.14f, '@', "The Hobbit");
+
+int MinV2(params int[] numbers)
+{
+  int min = int.MaxValue;
+  foreach (int number in numbers)
+  {
+    if (number < min)
+    {
+      min = number;
+    }
+  }
+  return min;
+}
+
+System.Console.WriteLine(MinV2(6, 4, 3, 5, 1, 2, 8));
