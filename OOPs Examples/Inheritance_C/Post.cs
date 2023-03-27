@@ -22,7 +22,7 @@ namespace Inheritance_C
             SendByUsername = "Rajorshi Ghosh";
         }
 
-        public Post(int i, string t, string s, bool p)
+        public Post( string t, bool p, string s)
         {
             ID = GetNextID();
             Title = t;
