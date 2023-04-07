@@ -1,0 +1,8 @@
+C:\CODING\C-Sharp-Programming\Vitality Health Care\bin\Debug\Vitality Health Care.exe.config
+C:\CODING\C-Sharp-Programming\Vitality Health Care\bin\Debug\Vitality Health Care.exe
+C:\CODING\C-Sharp-Programming\Vitality Health Care\bin\Debug\Vitality Health Care.pdb
+C:\CODING\C-Sharp-Programming\Vitality Health Care\obj\Debug\Vitality Health Care.csproj.AssemblyReference.cache
+C:\CODING\C-Sharp-Programming\Vitality Health Care\obj\Debug\Vitality Health Care.csproj.SuggestedBindingRedirects.cache
+C:\CODING\C-Sharp-Programming\Vitality Health Care\obj\Debug\Vitality Health Care.csproj.CoreCompileInputs.cache
+C:\CODING\C-Sharp-Programming\Vitality Health Care\obj\Debug\Vitality Health Care.exe
+C:\CODING\C-Sharp-Programming\Vitality Health Care\obj\Debug\Vitality Health Care.pdb
