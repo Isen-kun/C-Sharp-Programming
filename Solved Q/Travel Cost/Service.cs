@@ -1,3 +1,5 @@
+using System;
+
 class Service:Travel{
   public bool ValidateTravelId(string travelId){
     if(travelId.Length == 7){
@@ -13,6 +15,17 @@ class Service:Travel{
   }
 
   public double CalculateDiscountedPrice(){
+    int disCost = 0;
 
+    if(NoOfDays <= 5){
+      disCost = CostPerDay*NoOfDays;
+    }else if(NoOfDays > 5 && NoOfDays <= 8){
+      disCost = (CostPerDay*NoOfDays)-((CostPerDay*NoOfDays)*0.03);
+    }else if(NoOfDays > 8 && NoOfDays <= 10){
+      disCost = (CostPerDay*NoOfDays)-((CostPerDay*NoOfDays)*0.05);
+    }else if(NoOfDays > 10){
+      disCost = (CostPerDay*NoOfDays)-((CostPerDay*NoOfDays)*0.07);
+    }
+    return disCost;
   }
 }
