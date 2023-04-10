@@ -2,30 +2,28 @@ using System;
 
 class Service:Travel{
   public bool ValidateTravelId(string travelId){
-    if(travelId.Length == 7){
-      if(travelId.Substring(0,3) == this.DeparturePlace.Substring(0.3).ToUpper()){
-        if(travelId[3] == "/"){
-          if(travelId.Substring(4) == this.DeparturePlace.Substring(0.3).ToUpper()){
-            return true;
-          }
-        }
-      }
+    if(travelId.Length == 7 && 
+        travelId.Substring(0,3) == this.DeparturePlace.Substring(0,3).ToUpper() && 
+        travelId[3] == '/' && 
+        travelId.Substring(4,3) == this.DestinationPlace.Substring(0,3).ToUpper()
+      ){
+      return true;
     }
     return false;
   }
 
   public double CalculateDiscountedPrice(){
-    int disCost = 0;
+    double disCost = 0.0;
 
-    if(NoOfDays <= 5){
-      disCost = CostPerDay*NoOfDays;
-    }else if(NoOfDays > 5 && NoOfDays <= 8){
-      disCost = (CostPerDay*NoOfDays)-((CostPerDay*NoOfDays)*0.03);
-    }else if(NoOfDays > 8 && NoOfDays <= 10){
-      disCost = (CostPerDay*NoOfDays)-((CostPerDay*NoOfDays)*0.05);
-    }else if(NoOfDays > 10){
-      disCost = (CostPerDay*NoOfDays)-((CostPerDay*NoOfDays)*0.07);
+    if(this.NoOfDays <= 5){
+      disCost = this.CostPerDay*this.NoOfDays;
+    }else if(this.NoOfDays > 5 && this.NoOfDays <= 8){
+      disCost = (this.CostPerDay*this.NoOfDays)-((this.CostPerDay*this.NoOfDays)*0.03);
+    }else if(this.NoOfDays > 8 && this.NoOfDays <= 10){
+      disCost = (this.CostPerDay*this.NoOfDays)-((this.CostPerDay*this.NoOfDays)*0.05);
+    }else if(this.NoOfDays > 10){
+      disCost = (this.CostPerDay*this.NoOfDays)-((this.CostPerDay*this.NoOfDays)*0.07);
     }
-    return disCost;
+    return Convert.ToInt32(disCost);
   }
 }

@@ -21,7 +21,7 @@ class Program {
     
     if(serv.ValidateTravelId(id))
     {
-        Console.WriteLine($"Discounted Cost: {serv.CalculateDiscountedCost()}");
+        Console.WriteLine($"Discounted Cost: {serv.CalculateDiscountedPrice()}");
     }
     else
         Console.WriteLine("Invalid travel id");
