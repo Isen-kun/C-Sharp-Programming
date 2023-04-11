@@ -1,0 +1,15 @@
+C:\CODING\C-Sharp-Programming\Solved Q\VS Lite Courier\obj\Debug\net7.0\VS Lite Courier.csproj.AssemblyReference.cache
+C:\CODING\C-Sharp-Programming\Solved Q\VS Lite Courier\obj\Debug\net7.0\VS Lite Courier.GeneratedMSBuildEditorConfig.editorconfig
+C:\CODING\C-Sharp-Programming\Solved Q\VS Lite Courier\obj\Debug\net7.0\VS Lite Courier.AssemblyInfoInputs.cache
+C:\CODING\C-Sharp-Programming\Solved Q\VS Lite Courier\obj\Debug\net7.0\VS Lite Courier.AssemblyInfo.cs
+C:\CODING\C-Sharp-Programming\Solved Q\VS Lite Courier\obj\Debug\net7.0\VS Lite Courier.csproj.CoreCompileInputs.cache
+C:\CODING\C-Sharp-Programming\Solved Q\VS Lite Courier\bin\Debug\net7.0\VS Lite Courier.exe
+C:\CODING\C-Sharp-Programming\Solved Q\VS Lite Courier\bin\Debug\net7.0\VS Lite Courier.deps.json
+C:\CODING\C-Sharp-Programming\Solved Q\VS Lite Courier\bin\Debug\net7.0\VS Lite Courier.runtimeconfig.json
+C:\CODING\C-Sharp-Programming\Solved Q\VS Lite Courier\bin\Debug\net7.0\VS Lite Courier.dll
+C:\CODING\C-Sharp-Programming\Solved Q\VS Lite Courier\bin\Debug\net7.0\VS Lite Courier.pdb
+C:\CODING\C-Sharp-Programming\Solved Q\VS Lite Courier\obj\Debug\net7.0\VS Lite Courier.dll
+C:\CODING\C-Sharp-Programming\Solved Q\VS Lite Courier\obj\Debug\net7.0\refint\VS Lite Courier.dll
+C:\CODING\C-Sharp-Programming\Solved Q\VS Lite Courier\obj\Debug\net7.0\VS Lite Courier.pdb
+C:\CODING\C-Sharp-Programming\Solved Q\VS Lite Courier\obj\Debug\net7.0\VS Lite Courier.genruntimeconfig.cache
+C:\CODING\C-Sharp-Programming\Solved Q\VS Lite Courier\obj\Debug\net7.0\ref\VS Lite Courier.dll

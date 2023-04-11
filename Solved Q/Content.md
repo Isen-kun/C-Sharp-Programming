@@ -34,6 +34,6 @@ Phoenix Club - List
 
 ## Set 5 Questions
 
-Luxe Salon - \
-Mechtronic Customer Card - \
+Luxe Salon - Inheritance\
+Mechtronic Customer Card - Inheritance\
 Weather Report - List
