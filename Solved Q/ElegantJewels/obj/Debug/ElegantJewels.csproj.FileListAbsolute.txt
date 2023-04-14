@@ -1,0 +1,8 @@
+C:\CODING\C-Sharp-Programming\Solved Q\ElegantJewels\bin\Debug\ElegantJewels.exe.config
+C:\CODING\C-Sharp-Programming\Solved Q\ElegantJewels\bin\Debug\ElegantJewels.exe
+C:\CODING\C-Sharp-Programming\Solved Q\ElegantJewels\bin\Debug\ElegantJewels.pdb
+C:\CODING\C-Sharp-Programming\Solved Q\ElegantJewels\obj\Debug\ElegantJewels.csproj.AssemblyReference.cache
+C:\CODING\C-Sharp-Programming\Solved Q\ElegantJewels\obj\Debug\ElegantJewels.csproj.SuggestedBindingRedirects.cache
+C:\CODING\C-Sharp-Programming\Solved Q\ElegantJewels\obj\Debug\ElegantJewels.csproj.CoreCompileInputs.cache
+C:\CODING\C-Sharp-Programming\Solved Q\ElegantJewels\obj\Debug\ElegantJewels.exe
+C:\CODING\C-Sharp-Programming\Solved Q\ElegantJewels\obj\Debug\ElegantJewels.pdb
