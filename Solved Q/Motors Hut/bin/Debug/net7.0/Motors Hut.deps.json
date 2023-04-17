@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "Motors Hut/1.0.0": {
+        "runtime": {
+          "Motors Hut.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Motors Hut/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

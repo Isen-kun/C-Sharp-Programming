@@ -37,3 +37,12 @@ Phoenix Club - List
 Luxe Salon - Inheritance\
 Mechtronic Customer Card - Inheritance\
 Weather Report - List
+
+---
+
+## Mock Qualifier Questions
+
+Universal Home Appliances - Dictionary\
+Elegant Jewels - Inheritance\
+Archive Managment - Sorted Dictionary\
+Motors Hut - Sorted Inheritance
