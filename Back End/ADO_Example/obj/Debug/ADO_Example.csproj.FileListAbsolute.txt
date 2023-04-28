@@ -1,0 +1,8 @@
+C:\CODING\C-Sharp-Programming\ADO_Example\bin\Debug\ADO_Example.exe.config
+C:\CODING\C-Sharp-Programming\ADO_Example\bin\Debug\ADO_Example.exe
+C:\CODING\C-Sharp-Programming\ADO_Example\bin\Debug\ADO_Example.pdb
+C:\CODING\C-Sharp-Programming\ADO_Example\obj\Debug\ADO_Example.csproj.AssemblyReference.cache
+C:\CODING\C-Sharp-Programming\ADO_Example\obj\Debug\ADO_Example.csproj.SuggestedBindingRedirects.cache
+C:\CODING\C-Sharp-Programming\ADO_Example\obj\Debug\ADO_Example.csproj.CoreCompileInputs.cache
+C:\CODING\C-Sharp-Programming\ADO_Example\obj\Debug\ADO_Example.exe
+C:\CODING\C-Sharp-Programming\ADO_Example\obj\Debug\ADO_Example.pdb
