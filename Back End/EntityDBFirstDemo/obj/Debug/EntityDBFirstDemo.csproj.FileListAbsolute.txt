@@ -1,0 +1,13 @@
+C:\CODING\C-Sharp-Programming\Back End\EntityDBFirstDemo\bin\Debug\EntityDBFirstDemo.exe.config
+C:\CODING\C-Sharp-Programming\Back End\EntityDBFirstDemo\bin\Debug\EntityDBFirstDemo.exe
+C:\CODING\C-Sharp-Programming\Back End\EntityDBFirstDemo\bin\Debug\EntityDBFirstDemo.pdb
+C:\CODING\C-Sharp-Programming\Back End\EntityDBFirstDemo\bin\Debug\EntityFramework.dll
+C:\CODING\C-Sharp-Programming\Back End\EntityDBFirstDemo\bin\Debug\EntityFramework.SqlServer.dll
+C:\CODING\C-Sharp-Programming\Back End\EntityDBFirstDemo\bin\Debug\EntityFramework.xml
+C:\CODING\C-Sharp-Programming\Back End\EntityDBFirstDemo\bin\Debug\EntityFramework.SqlServer.xml
+C:\CODING\C-Sharp-Programming\Back End\EntityDBFirstDemo\obj\Debug\EntityDBFirstDemo.csproj.AssemblyReference.cache
+C:\CODING\C-Sharp-Programming\Back End\EntityDBFirstDemo\obj\Debug\EntityDBFirstDemo.csproj.SuggestedBindingRedirects.cache
+C:\CODING\C-Sharp-Programming\Back End\EntityDBFirstDemo\obj\Debug\EntityDBFirstDemo.csproj.CoreCompileInputs.cache
+C:\CODING\C-Sharp-Programming\Back End\EntityDBFirstDemo\obj\Debug\EntityDBFirstDemo.csproj.CopyComplete
+C:\CODING\C-Sharp-Programming\Back End\EntityDBFirstDemo\obj\Debug\EntityDBFirstDemo.exe
+C:\CODING\C-Sharp-Programming\Back End\EntityDBFirstDemo\obj\Debug\EntityDBFirstDemo.pdb
