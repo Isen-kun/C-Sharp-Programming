@@ -14,7 +14,7 @@ namespace EntityDBFirstDemo
             var emp = new Employee()
             {
                 EmpId = 4,
-                EmpName = "John Cena",
+                EmpName = "John CenaP",
                 EmpAddress = "Ohio",
                 EmpCountry = "US",
                 EmpEmail = "John.cena@gmail.com"
