@@ -12,5 +12,6 @@ namespace RealEstateAPI.Models
 
         //public string Description { get; set; }
         //deleted column
+        public ICollection<Property> Properties { get; set; }
     }
 }
