@@ -1,0 +1,13 @@
+C:\CODING\C-Sharp-Programming\Back End\ImportJobDBEntity\bin\Debug\ImportJobDBEntity.exe.config
+C:\CODING\C-Sharp-Programming\Back End\ImportJobDBEntity\bin\Debug\ImportJobDBEntity.exe
+C:\CODING\C-Sharp-Programming\Back End\ImportJobDBEntity\bin\Debug\ImportJobDBEntity.pdb
+C:\CODING\C-Sharp-Programming\Back End\ImportJobDBEntity\bin\Debug\EntityFramework.dll
+C:\CODING\C-Sharp-Programming\Back End\ImportJobDBEntity\bin\Debug\EntityFramework.SqlServer.dll
+C:\CODING\C-Sharp-Programming\Back End\ImportJobDBEntity\bin\Debug\EntityFramework.xml
+C:\CODING\C-Sharp-Programming\Back End\ImportJobDBEntity\bin\Debug\EntityFramework.SqlServer.xml
+C:\CODING\C-Sharp-Programming\Back End\ImportJobDBEntity\obj\Debug\ImportJobDBEntity.csproj.AssemblyReference.cache
+C:\CODING\C-Sharp-Programming\Back End\ImportJobDBEntity\obj\Debug\ImportJobDBEntity.csproj.SuggestedBindingRedirects.cache
+C:\CODING\C-Sharp-Programming\Back End\ImportJobDBEntity\obj\Debug\ImportJobDBEntity.csproj.CoreCompileInputs.cache
+C:\CODING\C-Sharp-Programming\Back End\ImportJobDBEntity\obj\Debug\ImportJobDBEntity.csproj.CopyComplete
+C:\CODING\C-Sharp-Programming\Back End\ImportJobDBEntity\obj\Debug\ImportJobDBEntity.exe
+C:\CODING\C-Sharp-Programming\Back End\ImportJobDBEntity\obj\Debug\ImportJobDBEntity.pdb
