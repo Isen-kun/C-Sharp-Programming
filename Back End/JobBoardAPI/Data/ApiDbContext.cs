@@ -12,6 +12,7 @@ namespace JobBoardAPI.Data
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<Skill> Skills { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -25,7 +26,7 @@ namespace JobBoardAPI.Data
                 .IsUnicode(false);
 
             modelBuilder.Entity<Application>()
-                .Property(e => e.Notes)
+                .Property(e => e.Resume)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Category>()
@@ -55,10 +56,6 @@ namespace JobBoardAPI.Data
 
             modelBuilder.Entity<Employer>()
                 .Property(e => e.ContactPhone)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Employer>()
-                .Property(e => e.Notes)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Employer>()
@@ -125,9 +122,9 @@ namespace JobBoardAPI.Data
                 .Property(e => e.Password)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<User>()
-                .Property(e => e.Role)
-                .IsUnicode(false);
+            //modelBuilder.Entity<User>()
+            //    .Property(e => e.Role)
+            //    .IsUnicode(false);
 
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Applications)
@@ -137,6 +134,15 @@ namespace JobBoardAPI.Data
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Employers)
                 .WithOne(e => e.User)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Role>()
+                .Property(e => e.RoleName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Role>()
+                .HasMany(e => e.Users)
+                .WithOne(e => e.Role)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

@@ -18,8 +18,7 @@ namespace JobBoardAPI.Models
 
         public DateTime AppliedAt { get; set; }
 
-        [Column(TypeName = "text")]
-        public string Notes { get; set; }
+        public string Resume { get; set; }
 
         public virtual Job Job { get; set; }
 

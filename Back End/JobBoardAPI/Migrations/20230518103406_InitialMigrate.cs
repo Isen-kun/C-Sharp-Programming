@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace JobBoardAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialTablesCreation : Migration
+    public partial class InitialMigrate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -41,6 +41,19 @@ namespace JobBoardAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Roles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleName = table.Column<string>(type: "varchar(max)", unicode: false, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Roles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Skills",
                 columns: table => new
                 {
@@ -63,11 +76,17 @@ namespace JobBoardAPI.Migrations
                     Name = table.Column<string>(type: "varchar(max)", unicode: false, nullable: false),
                     Email = table.Column<string>(type: "varchar(max)", unicode: false, nullable: false),
                     Password = table.Column<string>(type: "varchar(max)", unicode: false, nullable: false),
-                    Role = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false)
+                    RoleId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Users_Roles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "Roles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -80,8 +99,7 @@ namespace JobBoardAPI.Migrations
                     CompanyName = table.Column<string>(type: "varchar(max)", unicode: false, nullable: false),
                     ContactName = table.Column<string>(type: "varchar(max)", unicode: false, nullable: false),
                     ContactEmail = table.Column<string>(type: "varchar(max)", unicode: false, nullable: false),
-                    ContactPhone = table.Column<string>(type: "varchar(20)", unicode: false, maxLength: 20, nullable: false),
-                    Notes = table.Column<string>(type: "text", unicode: false, nullable: false)
+                    ContactPhone = table.Column<string>(type: "varchar(20)", unicode: false, maxLength: 20, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -149,7 +167,7 @@ namespace JobBoardAPI.Migrations
                     JobId = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
                     AppliedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Notes = table.Column<string>(type: "text", unicode: false, nullable: false)
+                    Resume = table.Column<string>(type: "varchar(max)", unicode: false, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -202,6 +220,11 @@ namespace JobBoardAPI.Migrations
                 name: "IX_Jobs_SkillId",
                 table: "Jobs",
                 column: "SkillId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_RoleId",
+                table: "Users",
+                column: "RoleId");
         }
 
         /// <inheritdoc />
@@ -227,6 +250,9 @@ namespace JobBoardAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Roles");
         }
     }
 }

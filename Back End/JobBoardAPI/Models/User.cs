@@ -14,8 +14,8 @@ namespace JobBoardAPI.Models
         //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
-        [Required]
-        public string Name { get; set; }
+        //[Required]
+        public string? Name { get; set; }
 
         [Required]
         public string Email { get; set; }
@@ -24,11 +24,12 @@ namespace JobBoardAPI.Models
         public string Password { get; set; }
 
         [Required]
-        [StringLength(50)]
-        public string Role { get; set; }
+        public int RoleId { get; set; }
 
         public virtual ICollection<Application> Applications { get; set; }
 
         public virtual ICollection<Employer> Employers { get; set; }
+
+        public virtual Role? Role { get; set; }
     }
 }

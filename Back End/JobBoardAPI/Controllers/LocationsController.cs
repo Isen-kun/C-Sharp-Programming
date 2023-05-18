@@ -1,6 +1,8 @@
 ﻿using JobBoardAPI.Data;
 using JobBoardAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace JobBoardAPI.Controllers
 {
@@ -12,6 +14,7 @@ namespace JobBoardAPI.Controllers
 
         // GET: api/<LocationsController>
         [HttpGet]
+        [Authorize]
         public IEnumerable<Location> Get()
         {
             return _dbContext.Locations;

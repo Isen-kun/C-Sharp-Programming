@@ -36,10 +36,10 @@ namespace JobBoardAPI.Migrations
                     b.Property<int>("JobId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Notes")
+                    b.Property<string>("Resume")
                         .IsRequired()
                         .IsUnicode(false)
-                        .HasColumnType("text");
+                        .HasColumnType("varchar(max)");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -110,11 +110,6 @@ namespace JobBoardAPI.Migrations
                         .HasMaxLength(20)
                         .IsUnicode(false)
                         .HasColumnType("varchar(20)");
-
-                    b.Property<string>("Notes")
-                        .IsRequired()
-                        .IsUnicode(false)
-                        .HasColumnType("text");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -209,6 +204,24 @@ namespace JobBoardAPI.Migrations
                     b.ToTable("Locations");
                 });
 
+            modelBuilder.Entity("JobBoardAPI.Models.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("RoleName")
+                        .IsRequired()
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
+                });
+
             modelBuilder.Entity("JobBoardAPI.Models.Skill", b =>
                 {
                     b.Property<int>("Id")
@@ -255,13 +268,12 @@ namespace JobBoardAPI.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(max)");
 
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
 
                     b.ToTable("Users");
                 });
@@ -331,6 +343,17 @@ namespace JobBoardAPI.Migrations
                     b.Navigation("Skill");
                 });
 
+            modelBuilder.Entity("JobBoardAPI.Models.User", b =>
+                {
+                    b.HasOne("JobBoardAPI.Models.Role", "Role")
+                        .WithMany("Users")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+                });
+
             modelBuilder.Entity("JobBoardAPI.Models.Category", b =>
                 {
                     b.Navigation("Jobs");
@@ -349,6 +372,11 @@ namespace JobBoardAPI.Migrations
             modelBuilder.Entity("JobBoardAPI.Models.Location", b =>
                 {
                     b.Navigation("Jobs");
+                });
+
+            modelBuilder.Entity("JobBoardAPI.Models.Role", b =>
+                {
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("JobBoardAPI.Models.Skill", b =>
