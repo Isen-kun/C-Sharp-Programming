@@ -56,16 +56,32 @@ namespace JobBoardAPI.Controllers
         [HttpPost("[action]")]
         public IActionResult Login([FromBody] User user)
         {
-            var curentUser = _dbContext.Users.FirstOrDefault(u => u.Email == user.Email && u.Password == user.Password);
-            if (curentUser == null)
+            var currentUser = _dbContext.Users.FirstOrDefault(u => u.Email == user.Email && u.Password == user.Password);
+            if (currentUser == null)
             {
                 return NotFound();
             }
+
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWT:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+            string roleName="";
+            foreach(var role in _dbContext.Roles)
+            {
+                if(role.Id == currentUser.RoleId)
+                {
+                    roleName = role.RoleName; 
+                    break;
+                }
+            }
+
+            var userTypeClaim = new Claim("userType", roleName); // Add user type claim
+            var emailClaim = new Claim(ClaimTypes.Email, user.Email);;
+
             var claims = new[]
             {
-                new Claim(ClaimTypes.Email, user.Email),
+                userTypeClaim,
+                emailClaim
             };
 
             var token = new JwtSecurityToken(

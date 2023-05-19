@@ -1,4 +1,3 @@
-
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -18,7 +17,7 @@ namespace JobBoardAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            //For JWT config
+            // For JWT config
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -33,6 +32,18 @@ namespace JobBoardAPI
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]))
                     };
                 });
+
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("admin", policy =>
+                    policy.RequireClaim("userType", "admin"));
+
+                options.AddPolicy("employer", policy =>
+                    policy.RequireClaim("userType", "employer"));
+
+                options.AddPolicy("applicant", policy =>
+                    policy.RequireClaim("userType", "applicant"));
+            });
 
             var app = builder.Build();
 
