@@ -29,7 +29,7 @@ namespace JobBoardAPI.Models
         public string ContactPhone { get; set; }
 
         [Column(TypeName = "text")]
-        public virtual User User { get; set; }
+        public virtual User? User { get; set; }
 
         public virtual ICollection<Job> Jobs { get; set; }
     }

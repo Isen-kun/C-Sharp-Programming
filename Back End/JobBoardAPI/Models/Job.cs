@@ -39,12 +39,12 @@ namespace JobBoardAPI.Models
 
         public virtual ICollection<Application> Applications { get; set; }
 
-        public virtual Category Category { get; set; }
+        public virtual Category? Category { get; set; }
 
-        public virtual Employer Employer { get; set; }
+        public virtual Employer? Employer { get; set; }
 
-        public virtual Location Location { get; set; }
+        public virtual Location? Location { get; set; }
 
-        public virtual Skill Skill { get; set; }
+        public virtual Skill? Skill { get; set; }
     }
 }
