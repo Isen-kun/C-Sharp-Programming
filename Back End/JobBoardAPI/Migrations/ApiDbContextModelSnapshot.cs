@@ -259,7 +259,6 @@ namespace JobBoardAPI.Migrations
                         .HasColumnType("varchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .IsUnicode(false)
                         .HasColumnType("varchar(max)");
 
@@ -280,78 +279,62 @@ namespace JobBoardAPI.Migrations
 
             modelBuilder.Entity("JobBoardAPI.Models.Application", b =>
                 {
-                    b.HasOne("JobBoardAPI.Models.Job", "Job")
+                    b.HasOne("JobBoardAPI.Models.Job", null)
                         .WithMany("Applications")
                         .HasForeignKey("JobId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("JobBoardAPI.Models.User", "User")
+                    b.HasOne("JobBoardAPI.Models.User", null)
                         .WithMany("Applications")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Job");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("JobBoardAPI.Models.Employer", b =>
                 {
-                    b.HasOne("JobBoardAPI.Models.User", "User")
+                    b.HasOne("JobBoardAPI.Models.User", null)
                         .WithMany("Employers")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("JobBoardAPI.Models.Job", b =>
                 {
-                    b.HasOne("JobBoardAPI.Models.Category", "Category")
+                    b.HasOne("JobBoardAPI.Models.Category", null)
                         .WithMany("Jobs")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("JobBoardAPI.Models.Employer", "Employer")
+                    b.HasOne("JobBoardAPI.Models.Employer", null)
                         .WithMany("Jobs")
                         .HasForeignKey("EmployerId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("JobBoardAPI.Models.Location", "Location")
+                    b.HasOne("JobBoardAPI.Models.Location", null)
                         .WithMany("Jobs")
                         .HasForeignKey("LocationId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("JobBoardAPI.Models.Skill", "Skill")
+                    b.HasOne("JobBoardAPI.Models.Skill", null)
                         .WithMany("Jobs")
                         .HasForeignKey("SkillId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Category");
-
-                    b.Navigation("Employer");
-
-                    b.Navigation("Location");
-
-                    b.Navigation("Skill");
                 });
 
             modelBuilder.Entity("JobBoardAPI.Models.User", b =>
                 {
-                    b.HasOne("JobBoardAPI.Models.Role", "Role")
+                    b.HasOne("JobBoardAPI.Models.Role", null)
                         .WithMany("Users")
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("JobBoardAPI.Models.Category", b =>

@@ -94,5 +94,30 @@ namespace JobBoardAPI.Controllers
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
             return Ok(jwt);
         }
+
+        [HttpPost("[action]")]
+        public IActionResult Logout()
+        {
+            // Invalidate the token by setting its expiration time to a past date/time
+            var token = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+            var jwtHandler = new JwtSecurityTokenHandler();
+            var jwtToken = jwtHandler.ReadToken(token) as JwtSecurityToken;
+
+            var expiredToken = new JwtSecurityToken(
+            _config["JWT:Issuer"],
+            _config["JWT:Audience"],
+            jwtToken.Claims,
+            DateTime.Now,
+            DateTime.Now.AddMinutes(-60),  // Expired token with negative expiration time
+            jwtToken.SigningCredentials
+            );
+
+            var newToken = jwtHandler.WriteToken(expiredToken);
+
+            // Clear any server-side session data related to the user if applicable
+            // For example: HttpContext.Session.Clear();
+
+            return Ok("Logout successful");
+        }
     }
 }

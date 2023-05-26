@@ -36,10 +36,28 @@ namespace JobBoardAPI.Controllers
         // POST api/<ApplicationsController>
         [HttpPost]
         [Authorize(Roles = "admin,applicant")]
-        public void Post([FromBody] Application application)
+        public IActionResult Post(IFormFile file, [FromForm] Application application, [FromServices] IConfiguration configuration)
         {
+            if (file == null || file.Length == 0)
+            {
+                return BadRequest("Invalid file");
+            }
+
+            var resumeFolderPath = configuration["AppSettings:ResumeFolderPath"];
+            var resumeFileName = Guid.NewGuid().ToString() + ".pdf";
+            var resumeFilePath = Path.Combine(resumeFolderPath, resumeFileName);
+
+            using (var fileStream = new FileStream(resumeFilePath, FileMode.Create))
+            {
+                file.CopyTo(fileStream);
+            }
+
+            application.Resume = resumeFilePath;
+
             _dbContext.Applications.Add(application);
             _dbContext.SaveChanges();
+
+            return Ok("Application submitted successfully");
         }
 
         // PUT api/<ApplicationsController>/5
