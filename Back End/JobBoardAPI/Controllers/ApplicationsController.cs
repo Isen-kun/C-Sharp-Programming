@@ -12,12 +12,37 @@ namespace JobBoardAPI.Controllers
     {
         ApiDbContext _dbContext = new ApiDbContext();
 
+        private IConfiguration _configuration;
+
+        public ApplicationsController(IConfiguration config)
+        {
+            _configuration = config;
+        }
+
         // GET: api/<ApplicationsController>
         [HttpGet]
         [Authorize(Roles = "admin,employer,applicant")]
-        public IEnumerable<Application> GetApplications()
+        public IActionResult GetApplications()
         {
-            return _dbContext.Applications;
+            var applications = _dbContext.Applications.ToList();
+
+            // Transform the applications data if needed
+            var transformedApplications = applications.Select(application =>
+            {
+                // Map the relevant properties
+                return new
+                {
+                    application.Id,
+                    application.UserId,
+                    application.JobId,
+                    application.Status,
+                    application.AppliedAt,
+                    // Return the file path or URL to the React application
+                    ResumeUrl = GetResumeUrl(application.Resume) // Custom method to get the file URL
+                };
+            });
+
+            return Ok(transformedApplications);
         }
 
         // GET api/<ApplicationsController>/5
@@ -30,20 +55,36 @@ namespace JobBoardAPI.Controllers
             {
                 return NotFound();
             }
-            return Ok(application);
+
+            // Retrieve the file path from the Resume property
+            var filePath = application.Resume;
+
+            // Check if the file exists
+            if (System.IO.File.Exists(filePath))
+            {
+                // Read the file content and return as a FileStreamResult
+                var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+                var contentType = "application/pdf"; // Set the content type according to your file type
+
+                return new FileStreamResult(fileStream, contentType);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         // POST api/<ApplicationsController>
         [HttpPost]
         [Authorize(Roles = "admin,applicant")]
-        public IActionResult Post(IFormFile file, [FromForm] Application application, [FromServices] IConfiguration configuration)
+        public IActionResult Post(IFormFile file, [FromForm] Application application)
         {
             if (file == null || file.Length == 0)
             {
                 return BadRequest("Invalid file");
             }
 
-            var resumeFolderPath = configuration["AppSettings:ResumeFolderPath"];
+            var resumeFolderPath = _configuration["AppSettings:ResumeFolderPath"];
             var resumeFileName = Guid.NewGuid().ToString() + ".pdf";
             var resumeFilePath = Path.Combine(resumeFolderPath, resumeFileName);
 
@@ -63,20 +104,45 @@ namespace JobBoardAPI.Controllers
         // PUT api/<ApplicationsController>/5
         [HttpPut("{id}")]
         [Authorize(Roles = "admin,employer")]
-        public IActionResult Put(int id, [FromBody] Application value)
+        public IActionResult Put(int id, IFormFile file, [FromForm] Application updatedApplication)
         {
             var application = _dbContext.Applications.Find(id);
             if (application == null)
             {
-                return NotFound("No records found with this id + " + id);
+                return NotFound("No records found with this id: " + id);
             }
-            application.Status = value.Status;
-            application.AppliedAt = value.AppliedAt;
-            application.Resume = value.Resume;
+
+            if (file != null)
+            {
+                // Delete the old resume file
+                if (System.IO.File.Exists(application.Resume))
+                {
+                    System.IO.File.Delete(application.Resume);
+                }
+
+                // Save the new resume file
+                var resumeFolderPath = _configuration["AppSettings:ResumeFolderPath"];
+                var resumeFileName = Guid.NewGuid().ToString() + ".pdf";
+                var resumeFilePath = Path.Combine(resumeFolderPath, resumeFileName);
+
+                using (var fileStream = new FileStream(resumeFilePath, FileMode.Create))
+                {
+                    // Copy the file content to the file stream
+                    file.CopyTo(fileStream);
+                }
+
+                application.Resume = resumeFilePath;
+            }
+
+            application.Status = updatedApplication.Status;
+            application.AppliedAt = updatedApplication.AppliedAt;
 
             _dbContext.SaveChanges();
+
             return Ok("Record updated successfully");
         }
+
+
 
         // DELETE api/<ApplicationsController>/5
         [HttpDelete("{id}")]
@@ -86,11 +152,30 @@ namespace JobBoardAPI.Controllers
             var application = _dbContext.Applications.Find(id);
             if (application == null)
             {
-                return NotFound("No records found with this id + " + id);
+                return NotFound("No records found with this id: " + id);
             }
+
+            // Delete the resume file
+            if (System.IO.File.Exists(application.Resume))
+            {
+                System.IO.File.Delete(application.Resume);
+            }
+
             _dbContext.Applications.Remove(application);
             _dbContext.SaveChanges();
-            return Ok("Record Deleted");
+
+            return Ok("Record deleted");
+        }
+
+        private string GetResumeUrl(string resumePath)
+        {
+            var baseUrl = $"{Request.Scheme}://{Request.Host}";
+
+            // Determine the URL path to the resume file
+            var resumeFolderPath = _configuration["AppSettings:ResumeFolderPath"];
+            var resumeUrlPath = resumePath.Replace(resumeFolderPath, "").Replace("\\", "/").TrimStart('/');
+
+            return $"{baseUrl}/{resumeUrlPath}";
         }
     }
 }

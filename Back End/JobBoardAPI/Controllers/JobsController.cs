@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace JobBoardAPI.Controllers
 {
@@ -34,104 +36,86 @@ namespace JobBoardAPI.Controllers
             return Ok(job);
         }
 
-        //// GET api/<JobsController>/category/{category}
-        //[HttpGet("category/{category}")]
-        //[Authorize(Roles = "admin,applicant")]
-        //public IActionResult GetJobsByCategory(string category)
-        //{
-        //    var jobs = _dbContext.Jobs
-        //    .Include(j => j.Category)
-        //    .Where(j => j.Category.Name.ToLower() == category.ToLower())
-        //    .ToList();
+        // GET api/<JobsController>/category/{category}
+        [HttpGet("category/{category}")]
+        [Authorize(Roles = "admin,applicant")]
+        public IActionResult GetJobsByCategory(string category)
+        {
+            var jobs = _dbContext.Jobs
+                .Include(j => j.Category)
+                .Where(j => j.Category.Name.ToLower() == category.ToLower())
+                .ToList();
 
-        //    //List<Job> jobs = new List<Job>();
-        //    //foreach (var cate in _dbContext.Categories)
-        //    //{
-        //    //    if (category == cate.Name)
-        //    //    {
-        //    //        foreach(var job in GetJobs())
-        //    //        {
-        //    //            if(job.CategoryId == cate.Id)
-        //    //            {
-        //    //                jobs.Add(job);
-        //    //            }
-        //    //        }
-        //    //    }
-        //    //}
+            if (jobs.Count == 0)
+            {
+                return NotFound();
+            }
+
+            var options = new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            };
+
+            // Serialize the jobs using the updated options
+            string json = JsonSerializer.Serialize(jobs, options);
+
+            return Ok(json);
+        }
+
+        // GET api/<JobsController>/skill/{skill}
+        [HttpGet("skill/{skill}")]
+        [Authorize(Roles = "admin,applicant")]
+        public IActionResult GetJobsBySkill(string skill)
+        {
+            var jobs = _dbContext.Jobs
+                .Include(j => j.Skill)
+                .Where(j => j.Skill.Name.ToLower() == skill.ToLower())
+                .ToList();
+
+            if (jobs.Count == 0)
+            {
+                return NotFound();
+            }
+
+            var options = new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            };
+
+            // Serialize the data using the updated options
+            string json = JsonSerializer.Serialize(jobs, options);
+
+            return Ok(json);
+        }
 
 
-        //    if (jobs.Count == 0)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return Ok(jobs);
-        //}
+        // GET api/<JobsController>/location/{location}
+        [HttpGet("location/{location}")]
+        [Authorize(Roles = "admin,applicant")]
+        public IActionResult GetJobsByLocation(string location)
+        {
+            var jobs = _dbContext.Jobs
+                .Include(j => j.Location)
+                .Where(j => j.Location.City.ToLower() == location.ToLower()
+                        || j.Location.State.ToLower() == location.ToLower()
+                        || j.Location.Country.ToLower() == location.ToLower())
+                .ToList();
 
-        //// GET api/<JobsController>/location/{location}
-        //[HttpGet("location/{location}")]
-        //[Authorize(Roles = "admin,applicant")]
-        //public IActionResult GetJobsByLocation(string location)
-        //{
-        //    var jobs = _dbContext.Jobs
-        //    .Include(j => j.Location)
-        //    .Where(j => j.Location.City.ToLower() == location.ToLower()
-        //            || j.Location.State.ToLower() == location.ToLower()
-        //            || j.Location.Country.ToLower() == location.ToLower())
-        //    .ToList();
+            if (jobs.Count == 0)
+            {
+                return NotFound();
+            }
 
-        //    //List<Job> jobs = new List<Job>();
-        //    //foreach (var loc in _dbContext.Locations)
-        //    //{
-        //    //    if (location == loc.City || location == loc.State || location == loc.Country)
-        //    //    {
-        //    //        foreach (var job in GetJobs())
-        //    //        {
-        //    //            if (job.CategoryId == loc.Id)
-        //    //            {
-        //    //                jobs.Add(job);
-        //    //            }
-        //    //        }
-        //    //    }
-        //    //}
+            var options = new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            };
 
-        //    if (jobs.Count == 0)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return Ok(jobs);
-        //}
+            // Serialize the jobs using the updated options
+            string json = JsonSerializer.Serialize(jobs, options);
 
-        //// GET api/<JobsController>/skill/{skill}
-        //[HttpGet("skill/{skill}")]
-        //[Authorize(Roles = "admin,applicant")]
-        //public IActionResult GetJobsBySkill(string skill)
-        //{
-        //    var jobs = _dbContext.Jobs
-        //    .Include(j => j.Skill)
-        //    .Where(j => j.Skill.Name.ToLower() == skill.ToLower())
-        //    .ToList();
-
-        //    //List<Job> jobs = new List<Job>();
-        //    //foreach (var ski in _dbContext.Skills)
-        //    //{
-        //    //    if (skill == ski.Name)
-        //    //    {
-        //    //        foreach (var job in GetJobs())
-        //    //        {
-        //    //            if (job.SkillId == ski.Id)
-        //    //            {
-        //    //                jobs.Add(job);
-        //    //            }
-        //    //        }
-        //    //    }
-        //    //}
-
-        //    if (jobs.Count == 0)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return Ok(jobs);
-        //}
+            return Ok(json);
+        }
 
         // POST api/<JobsController>
         [HttpPost]

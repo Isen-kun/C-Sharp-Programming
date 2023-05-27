@@ -114,9 +114,6 @@ namespace JobBoardAPI.Controllers
 
             var newToken = jwtHandler.WriteToken(expiredToken);
 
-            // Clear any server-side session data related to the user if applicable
-            // For example: HttpContext.Session.Clear();
-
             return Ok("Logout successful");
         }
     }
