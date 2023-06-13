@@ -56,6 +56,39 @@ namespace JobBoardAPI.Controllers
                 return NotFound();
             }
 
+            var appList = new List<Application>();
+            appList.Add(application);
+
+            // Transform the applications data if needed
+            var transformedApplication = appList.Select(application =>
+            {
+                // Map the relevant properties
+                return new
+                {
+                    application.Id,
+                    application.UserId,
+                    application.JobId,
+                    application.Status,
+                    application.AppliedAt,
+                    // Return the file path or URL to the React application
+                    ResumeUrl = GetResumeUrl(application.Resume) // Custom method to get the file URL
+                };
+            });
+
+            return Ok(transformedApplication);
+        }
+
+        // GET api/<ApplicationsController>/5
+        [HttpGet("AppResume/{id}")]
+        [Authorize(Roles = "admin,employer,applicant")]
+        public IActionResult GetApplicationResumeById(int id)
+        {
+            var application = _dbContext.Applications.FirstOrDefault(x => x.Id == id);
+            if (application == null)
+            {
+                return NotFound();
+            }
+
             // Retrieve the file path from the Resume property
             var filePath = application.Resume;
 
@@ -143,7 +176,6 @@ namespace JobBoardAPI.Controllers
         }
 
 
-
         // DELETE api/<ApplicationsController>/5
         [HttpDelete("{id}")]
         [Authorize(Roles = "admin,employer,applicant")]
@@ -173,7 +205,9 @@ namespace JobBoardAPI.Controllers
 
             // Determine the URL path to the resume file
             var resumeFolderPath = _configuration["AppSettings:ResumeFolderPath"];
-            var resumeUrlPath = resumePath.Replace(resumeFolderPath, "").Replace("\\", "/").TrimStart('/');
+            var resumeFileName = Path.GetFileName(resumePath);
+            var resumeUrlPath = Path.Combine(resumeFolderPath, resumeFileName).Replace("\\", "/");
+            //var resumeUrlPath = Path.Combine(webHostEnvironment.WebRootPath, resumeFileName);
 
             return $"{baseUrl}/{resumeUrlPath}";
         }

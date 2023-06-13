@@ -1,5 +1,6 @@
 ﻿using JobBoardAPI.Data;
 using JobBoardAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -19,6 +20,14 @@ namespace JobBoardAPI.Controllers
         public UsersController(IConfiguration config)
         {
             _config = config;
+        }
+
+        // GET: api/<UsersController>
+        [HttpGet]
+        [Authorize(Policy = "admin")]
+        public IEnumerable<User> GetAllUsers()
+        {
+            return _dbContext.Users;
         }
 
         [HttpPost("[action]")]
@@ -95,26 +104,26 @@ namespace JobBoardAPI.Controllers
             return Ok(jwt);
         }
 
-        [HttpPost("[action]")]
-        public IActionResult Logout()
-        {
-            // Invalidate the token by setting its expiration time to a past date/time
-            var token = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
-            var jwtHandler = new JwtSecurityTokenHandler();
-            var jwtToken = jwtHandler.ReadToken(token) as JwtSecurityToken;
+        //[HttpPost("[action]")]
+        //public IActionResult Logout()
+        //{
+        //    // Invalidate the token by setting its expiration time to a past date/time
+        //    var token = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+        //    var jwtHandler = new JwtSecurityTokenHandler();
+        //    var jwtToken = jwtHandler.ReadToken(token) as JwtSecurityToken;
 
-            var expiredToken = new JwtSecurityToken(
-            _config["JWT:Issuer"],
-            _config["JWT:Audience"],
-            jwtToken.Claims,
-            DateTime.Now,
-            DateTime.Now.AddMinutes(-60),  // Expired token with negative expiration time
-            jwtToken.SigningCredentials
-            );
+        //    var expiredToken = new JwtSecurityToken(
+        //    _config["JWT:Issuer"],
+        //    _config["JWT:Audience"],
+        //    jwtToken.Claims,
+        //    DateTime.Now,
+        //    DateTime.Now.AddMinutes(-60),  // Expired token with negative expiration time
+        //    jwtToken.SigningCredentials
+        //    );
 
-            var newToken = jwtHandler.WriteToken(expiredToken);
+        //    var newToken = jwtHandler.WriteToken(expiredToken);
 
-            return Ok("Logout successful");
-        }
+        //    return Ok("Logout successful");
+        //}
     }
 }

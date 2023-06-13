@@ -18,7 +18,7 @@ namespace JobBoardAPI.Models
 
         public DateTime AppliedAt { get; set; }
 
-        public string Resume { get; set; }
+        public string? Resume { get; set; }
 
         public virtual Job? Job { get; set; }
 
