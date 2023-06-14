@@ -1,8 +1,15 @@
 ﻿using JobBoardAPI.Data;
 using JobBoardAPI.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace JobBoardAPI.Controllers
 {
@@ -10,14 +17,17 @@ namespace JobBoardAPI.Controllers
     [ApiController]
     public class ApplicationsController : ControllerBase
     {
-        ApiDbContext _dbContext = new ApiDbContext();
+        private readonly ApiDbContext _dbContext;
+        private readonly IConfiguration _configuration;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        private IConfiguration _configuration;
-
-        public ApplicationsController(IConfiguration config)
+        public ApplicationsController(ApiDbContext dbContext, IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
         {
-            _configuration = config;
+            _dbContext = dbContext;
+            _configuration = configuration;
+            _webHostEnvironment = webHostEnvironment;
         }
+
 
         // GET: api/<ApplicationsController>
         [HttpGet]
@@ -37,13 +47,14 @@ namespace JobBoardAPI.Controllers
                     application.JobId,
                     application.Status,
                     application.AppliedAt,
-                    // Return the file path or URL to the React application
-                    ResumeUrl = GetResumeUrl(application.Resume) // Custom method to get the file URL
+                    // Return the static serve link for the file
+                    ResumeUrl = GetResumeUrl(application.Resume) // Custom method to get the static serve link
                 };
             });
 
             return Ok(transformedApplications);
         }
+
 
         // GET api/<ApplicationsController>/5
         [HttpGet("{id}")]
@@ -56,27 +67,20 @@ namespace JobBoardAPI.Controllers
                 return NotFound();
             }
 
-            var appList = new List<Application>();
-            appList.Add(application);
-
-            // Transform the applications data if needed
-            var transformedApplication = appList.Select(application =>
+            var transformedApplication = new
             {
-                // Map the relevant properties
-                return new
-                {
-                    application.Id,
-                    application.UserId,
-                    application.JobId,
-                    application.Status,
-                    application.AppliedAt,
-                    // Return the file path or URL to the React application
-                    ResumeUrl = GetResumeUrl(application.Resume) // Custom method to get the file URL
-                };
-            });
+                application.Id,
+                application.UserId,
+                application.JobId,
+                application.Status,
+                application.AppliedAt,
+                // Return the static serve link for the file
+                ResumeUrl = GetResumeUrl(application.Resume) // Custom method to get the static serve link
+            };
 
             return Ok(transformedApplication);
         }
+
 
         // GET api/<ApplicationsController>/5
         [HttpGet("AppResume/{id}")]
@@ -89,23 +93,14 @@ namespace JobBoardAPI.Controllers
                 return NotFound();
             }
 
-            // Retrieve the file path from the Resume property
+            // Return the file directly without changing the implementation
             var filePath = application.Resume;
+            var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+            var contentType = "application/pdf"; // Set the content type according to your file type
 
-            // Check if the file exists
-            if (System.IO.File.Exists(filePath))
-            {
-                // Read the file content and return as a FileStreamResult
-                var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-                var contentType = "application/pdf"; // Set the content type according to your file type
-
-                return new FileStreamResult(fileStream, contentType);
-            }
-            else
-            {
-                return NotFound();
-            }
+            return new FileStreamResult(fileStream, contentType);
         }
+
 
         // POST api/<ApplicationsController>
         [HttpPost]
@@ -117,6 +112,7 @@ namespace JobBoardAPI.Controllers
                 return BadRequest("Invalid file");
             }
 
+            // Determine the appropriate path to store the file
             var resumeFolderPath = _configuration["AppSettings:ResumeFolderPath"];
             var resumeFileName = Guid.NewGuid().ToString() + ".pdf";
             var resumeFilePath = Path.Combine(resumeFolderPath, resumeFileName);
@@ -133,6 +129,7 @@ namespace JobBoardAPI.Controllers
 
             return Ok("Application submitted successfully");
         }
+
 
         // PUT api/<ApplicationsController>/5
         [HttpPut("{id}")]
@@ -199,15 +196,16 @@ namespace JobBoardAPI.Controllers
             return Ok("Record deleted");
         }
 
+
+
         private string GetResumeUrl(string resumePath)
         {
             var baseUrl = $"{Request.Scheme}://{Request.Host}";
 
             // Determine the URL path to the resume file
-            var resumeFolderPath = _configuration["AppSettings:ResumeFolderPath"];
+            //var resumeFolderPath = _configuration["AppSettings:ResumeFolderPath"];
             var resumeFileName = Path.GetFileName(resumePath);
-            var resumeUrlPath = Path.Combine(resumeFolderPath, resumeFileName).Replace("\\", "/");
-            //var resumeUrlPath = Path.Combine(webHostEnvironment.WebRootPath, resumeFileName);
+            var resumeUrlPath = $"assets/{resumeFileName}";
 
             return $"{baseUrl}/{resumeUrlPath}";
         }

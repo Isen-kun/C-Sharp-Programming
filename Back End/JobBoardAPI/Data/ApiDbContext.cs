@@ -5,6 +5,8 @@ namespace JobBoardAPI.Data
 {
     public class ApiDbContext:DbContext
     {
+        public ApiDbContext() { }
+        public ApiDbContext(DbContextOptions<ApiDbContext> options) : base(options) { }
         public virtual DbSet<Application> Applications { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Employer> Employers { get; set; }

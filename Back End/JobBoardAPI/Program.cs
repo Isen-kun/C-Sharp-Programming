@@ -1,4 +1,6 @@
+using JobBoardAPI.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -11,6 +13,8 @@ namespace JobBoardAPI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddDbContext<ApiDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -57,12 +61,18 @@ namespace JobBoardAPI
 
             app.UseHttpsRedirection();
 
+            app.UseRouting();
+
             app.UseAuthentication();
 
             app.UseAuthorization();
 
+            app.UseStaticFiles();
 
-            app.MapControllers();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
 
             app.Run();
         }
